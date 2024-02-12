@@ -1,15 +1,11 @@
-from flask import Flask, request, jsonify
-# import requests
-import logging
+from flask import Flask, request, jsonify, abort
 
 app = Flask(__name__)
-logging.basicConfig(filename='webhook.log', level=logging.INFO)
-@app.route("/webhook", methods=['POST'])
+@app.route("/webhook", methods=['POST', "GET"])
 def app_():
-    data = request.get_json()
-    logging.info(f'Received data: {data}')
-    return 'Success'
+    if request.method == "POST":
+        print(request.json())
+        return "success"
+    else:
+        abort(400)
 
-
-if __name__=="__main__":
-    app.run()
