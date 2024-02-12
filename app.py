@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-import requests
+# import requests
 import logging
 
 app = Flask(__name__)
@@ -9,3 +9,7 @@ def app_():
     data = request.get_json()
     logging.info(f'Received data: {data}')
     return 'Success'
+
+
+if __name__=="__main__":
+    app.run()
