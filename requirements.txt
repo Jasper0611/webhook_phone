@@ -2,4 +2,4 @@ Flask
 gunicorn
 requests
 logging
-mysql
+mysql-connector-python
