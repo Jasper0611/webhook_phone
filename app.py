@@ -1,11 +1,7 @@
 from flask import Flask, request, jsonify, abort
 import mysql.connector as my
 
-<<<<<<< HEAD
 con= my.connect(host='localhost',user='webhook',password='Jasper@1998')
-=======
-con= my.connect(host='http://127.0.0.1/',user='webhook',password='Jasper@1998')
->>>>>>> 93455afa727e3848289aacdf295785be9125efa4
 cursor=con.cursor()
 cursor.execute('USE apollo_contacts') 
 
