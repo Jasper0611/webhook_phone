@@ -1,6 +1,11 @@
-from flask import Flask, request, jsonify, abort, render_template
+from flask import Flask, request, jsonify, abort
+import mysql.connector as my
 
 app = Flask(__name__)
+
+# Connect to MySQL server
+con = my.connect(host='localhost', user='root', password='Jasper@1998', database='apollo_contacts')
+cursor = con.cursor()
 
 @app.route("/webhook", methods=["GET", "POST"])
 def app_():
@@ -11,9 +16,25 @@ def app_():
         # Handle POST request
         information = request.json
         print(information)
-        # Render a template with the JSON data
-        print(information)
-        return render_template("index.html", data=information)
+        
+        # Insert data into MySQL table
+        try:
+            people_id = information['people'][0]['id']
+            phone_numbers = information['people'][0].get('phone_numbers', [])
+            if phone_numbers:
+                raw_number = phone_numbers[0].get('raw_number', None)
+            else:
+                raw_number = None
+            
+            insert_query = "INSERT INTO phone (id, mobile) VALUES (%s, %s)"
+            cursor.execute(insert_query, (people_id, raw_number))
+            con.commit()
+            return "Data successfully inserted into MySQL database."
+        except Exception as e:
+            return f"Error: {str(e)}"
     else:
         # Return a 405 Method Not Allowed error if the request method is not GET or POST
         abort(405)
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=10000)
