@@ -12,6 +12,7 @@ def app_():
         information = request.json
         print(information)
         # Render a template with the JSON data
+        print(information)
         return render_template("webhook_data.html", data=information)
     else:
         # Return a 405 Method Not Allowed error if the request method is not GET or POST
