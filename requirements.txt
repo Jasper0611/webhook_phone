@@ -3,3 +3,4 @@ gunicorn
 requests
 logging
 mysql-connector-python
+csv
