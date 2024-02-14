@@ -2,8 +2,4 @@ Flask
 gunicorn
 requests
 logging
-<<<<<<< HEAD
 mysql-connector-python
-=======
-mysql-connector-python
->>>>>>> 93455afa727e3848289aacdf295785be9125efa4
