@@ -7,7 +7,6 @@ app.config['MYSQL_USER'] = 'webhook'
 app.config['MYSQL_PASSWORD'] ='Jasper@1998'
 app.config['MYSQL_DATABASE'] = 'apollo_contacts'
 app.config['MYSQL_PORT'] = 3306  # Default MySQL port
-app.config['MYSQL_UNIX_SOCKET'] = None  # Disable Unix socket
 mysql = MySQL(app)
 @app.route("/webhook", methods=["POST"])
 def app_():
@@ -29,7 +28,7 @@ def app_():
             cur.close()
             
             return jsonify({"message": "Data successfully inserted into MySQL database"}), 200
-        except mysql.connector.Error as e:
+        except MySQL.Error as e:
             return jsonify({"error": str(e)}), 500
         except KeyError as e:
             return jsonify({"error": f"Missing key in request data: {str(e)}"}), 400
