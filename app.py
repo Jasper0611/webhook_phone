@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, abort
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
-app.config['MYSQL_HOST'] ='localhost'
+app.config['MYSQL_HOST'] ='127.0.0.1'
 app.config['MYSQL_USER'] = 'webhook'
 app.config['MYSQL_PASSWORD'] ='Jasper@1998'
 app.config['MYSQL_DATABASE'] = 'apollo_contacts'
