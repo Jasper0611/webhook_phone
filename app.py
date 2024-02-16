@@ -40,11 +40,12 @@ import mysql.connector as my
 app = Flask(__name__)
 @app.route("/webhook", methods=["POST"])
 def app_():
+    con= my.connect(host='127.0.0.1',user='webhook',password='Jasper@1998')
+    cursor=con.cursor()
+    cursor.execute('USE apollo_contacts') 
     if request.method == "POST":
         try:
-            con= my.connect(host='127.0.0.1',user='webhook',password='Jasper@1998')
-            cursor=con.cursor()
-            cursor.execute('USE apollo_contacts') 
+            
             information = request.json
             print(information)
             
