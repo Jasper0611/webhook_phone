@@ -10,6 +10,7 @@ app.config['MYSQL_PORT'] = 3306  # Default MySQL port
 mysql = MySQL(app)
 @app.route("/webhook", methods=["POST"])
 def app_():
+    cur = mysql.connection.cursor()
     if request.method == "POST":
         try:
             cur = mysql.connection.cursor()
