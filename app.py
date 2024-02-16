@@ -1,11 +1,15 @@
 from flask import Flask, request, jsonify, abort
-import mysql.connector as my
+from flask_mysql_connector import MySQL
 
 app = Flask(__name__)
-
+app.config['MYSQL_HOST'] ='localhost'
+app.config['MYSQL_USER'] = 'webhook'
+app.config['MYSQL_PASSWORD'] ='Jasper@1998'
+app.config['MYSQL_DATABASE'] = 'apollo_contacts'
+mysql = MySQL(app)
 # Connect to MySQL server
-con = my.connect(host='127.0.0.1', user='webhook', password='Jasper@1998', database='apollo_contacts')
-cursor = con.cursor()
+# cursor  = my.connect(host='127.0.0.1', user='webhook', password='Jasper@1998', database='apollo_contacts')
+# cursor = con.cursor()
 
 @app.route("/webhook", methods=["GET", "POST"])
 def app_():
@@ -13,7 +17,8 @@ def app_():
         # Handle GET request (if needed)
         return "This endpoint only accepts POST requests."
     elif request.method == "POST":
-        # Handle POST request
+        conn = mysql.connection
+        cur = conn.cursor()
         information = request.json
         print(information)
         
@@ -27,8 +32,8 @@ def app_():
                 raw_number = None
             
             insert_query = "INSERT INTO phone (id, mobile) VALUES (%s, %s)"
-            cursor.execute(insert_query, (people_id, raw_number))
-            con.commit()
+            cur.execute(insert_query, (people_id, raw_number))
+            conn.commit()
             return "Data successfully inserted into MySQL database."
         except Exception as e:
             return f"Error: {str(e)}"
