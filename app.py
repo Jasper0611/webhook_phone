@@ -2,11 +2,11 @@ from flask import Flask, request, jsonify, abort
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
-app.config['MYSQL_HOST'] ='127.0.0.1'
+app.config['MYSQL_HOST'] ='dpg-cn7nb8uct0pc738vukb0-a'
 app.config['MYSQL_USER'] = 'webhook'
-app.config['MYSQL_PASSWORD'] ='Jasper@1998'
-app.config['MYSQL_DATABASE'] = 'apollo_contacts'
-app.config['MYSQL_PORT'] = 3306  # Default MySQL port
+app.config['MYSQL_PASSWORD'] ='kD7IKRWiitHBe9tQq5Qwf6pHOtAbKI2m'
+app.config['MYSQL_DATABASE'] = 'webhook_contacts'
+app.config['MYSQL_PORT'] = 5432  # Default MySQL port
 mysql = MySQL(app)
 @app.route("/webhook", methods=["POST"])
 def app_():
