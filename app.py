@@ -37,7 +37,7 @@
 from flask import Flask, request, jsonify, abort
 import mysql.connector as my
 
-
+app = Flask(__name__)
 @app.route("/webhook", methods=["POST"])
 def app_():
     if request.method == "POST":
