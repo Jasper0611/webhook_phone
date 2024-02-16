@@ -1,4 +1,4 @@
 Flask
 gunicorn
 requests
-flask_mysql_connector
+flask-mysqldb
