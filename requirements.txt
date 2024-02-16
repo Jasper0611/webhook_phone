@@ -1,3 +1,4 @@
+MySQLdb
 Flask
 gunicorn
 requests

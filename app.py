@@ -13,8 +13,8 @@ mysql = MySQL(app)
 def app_():
     if request.method == "POST":
         try:
-            conn = mysql.connection
-            cur = conn.cursor()
+            cur = mysql.connection.cursor()
+          
 
             information = request.json
             print(information)
@@ -25,10 +25,8 @@ def app_():
             
             insert_query = "INSERT INTO phone (id, mobile) VALUES (%s, %s)"
             cur.execute(insert_query, (people_id, raw_number))
-            conn.commit()
-            
+        
             cur.close()
-            conn.close()
             
             return jsonify({"message": "Data successfully inserted into MySQL database"}), 200
         except mysql.connector.Error as e:
