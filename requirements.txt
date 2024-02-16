@@ -1,4 +1,4 @@
 Flask
 gunicorn
 requests
-mysql-connector-python==8.0.28
+flask_mysql_connector
