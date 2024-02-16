@@ -4,7 +4,7 @@ import mysql.connector as my
 app = Flask(__name__)
 
 # Connect to MySQL server
-con = my.connect(host='3.213.221.109', user='coe_n8nuser', password='7kbn21CLh5JQ', database='TCS_datateam')
+con = my.connect(host='JASPER', user='webhook', password='Jasper@1998', database='apollo_contacts')
 cursor = con.cursor()
 
 @app.route("/webhook", methods=["GET", "POST"])
@@ -26,7 +26,7 @@ def app_():
             else:
                 raw_number = None
             
-            insert_query = "INSERT INTO hot_leads_phone (id, mobile) VALUES (%s, %s)"
+            insert_query = "INSERT INTO phone (id, mobile) VALUES (%s, %s)"
             cursor.execute(insert_query, (people_id, raw_number))
             con.commit()
             return "Data successfully inserted into MySQL database."
