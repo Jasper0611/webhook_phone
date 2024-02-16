@@ -4,7 +4,7 @@ import mysql.connector as my
 app = Flask(__name__)
 
 # Connect to MySQL server
-con = my.connect(host='JASPER', user='webhook', password='Jasper@1998', database='apollo_contacts')
+con = my.connect(host='127.0.0.1', user='webhook', password='Jasper@1998', database='apollo_contacts')
 cursor = con.cursor()
 
 @app.route("/webhook", methods=["GET", "POST"])
